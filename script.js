@@ -33,7 +33,7 @@ function sendMessage() {
     const userInput = document.getElementById("userInput").value;
     if (userInput.trim()) {
         const chatLog = document.getElementById("chatLog");
-        chatLog.innerHTML += `<p>You: ${userInput}</p>`;
+        chatLog.innerHTML += `<p>You: ${userInput.replace(/\n/g, '<br>')}</p>`;
         document.getElementById("userInput").value = "";
 
         chatHistory.push({ role: "user", content: userInput });
@@ -66,7 +66,7 @@ function sendMessage() {
             }
             const assistantMessage = data.choices[0].message.content;
             chatHistory.push({ role: "assistant", content: assistantMessage });
-            chatLog.innerHTML += `<p>Assistant: ${assistantMessage}</p>`;
+            chatLog.innerHTML += `<p>Assistant: ${assistantMessage.replace(/\n/g, '<br>')}</p>`;
             chatLog.scrollTop = chatLog.scrollHeight;
         })
         .catch(error => {
