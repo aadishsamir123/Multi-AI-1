@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
 }
@@ -18,13 +23,18 @@ body, html {
     flex: 1;
     overflow-y: auto;
     padding: 20px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #333;
+    background-color: #1e1e1e;
+}
+
+.chat-log p {
+    margin: 10px 0;
 }
 
 .model-label, .user-input {
     padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border-top: 1px solid #333;
+    background-color: #1e1e1e;
 }
 
 .user-input {
@@ -35,15 +45,17 @@ body, html {
     flex: 1;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
     border-radius: 4px;
+    background-color: #333;
+    color: #ffffff;
     margin-right: 10px;
 }
 
 .user-input button {
     padding: 10px 20px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
     border-radius: 4px;
     background-color: #007bff;
     color: white;
