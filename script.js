@@ -1,4 +1,4 @@
-const apiKey = "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"; // Replace with your Groq API key
+const apiKey = "GROQ_API_KEY"; // Replace with your Groq API key
 
 let chatHistory = [];
 
