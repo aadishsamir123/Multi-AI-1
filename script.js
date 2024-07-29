@@ -1,3 +1,14 @@
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
+    });
+}
+
+
 const apiKey = "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"; // Replace with your Groq API key
 
 let chatHistory = [];
