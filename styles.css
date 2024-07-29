@@ -19,6 +19,41 @@ body, html {
     width: 100%;
 }
 
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    background-color: #1e1e1e;
+}
+
+.refresh-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: auto; /* Aligns button to the left */
+    font-size: 20px;
+}
+
+.refresh-button:hover {
+    background-color: #0056b3;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.logo i {
+    font-size: 24px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
 .chat-log {
     flex: 1;
     overflow-y: auto;
@@ -52,7 +87,7 @@ body, html {
     margin-right: 10px;
 }
 
-.user-input button {
+.user-input .send-button {
     padding: 10px 20px;
     font-size: 16px;
     border: 1px solid #333;
@@ -62,7 +97,11 @@ body, html {
     cursor: pointer;
 }
 
-.user-input button:hover {
+.user-input .send-button i {
+    font-size: 16px; /* Adjust as needed */
+}
+
+.user-input .send-button:hover {
     background-color: #0056b3;
 }
 

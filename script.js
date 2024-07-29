@@ -8,6 +8,9 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+function refreshPage() {
+    window.location.reload();
+}
 
 const apiKey = "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"; // Replace with your Groq API key
 

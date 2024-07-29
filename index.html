@@ -1,44 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Multi AI</title>
-        <link rel="stylesheet" href="styles.css" />
-        <script
-          src="https://kit.fontawesome.com/b0efd9a5a2.js"
-          crossorigin="anonymous"
-        ></script>
-
-        <!-- Cache Control -->
-        <meta
-          http-equiv="Cache-Control"
-          content="no-cache, no-store, must-revalidate"
-        />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-
-        <!-- Web App Manifest -->
-        <link rel="manifest" href="manifest.json" />
-
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="Multi AI" />
-        <meta
-          property="og:description"
-          content="Aadish's Multi AI Interface."
-        />
-        <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Multi AI" />
-      </head>
-      <body>
-        <!-- Your existing content -->
-        <!-- ... -->
-      </body>
-    </html>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi AI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/b0efd9a5a2.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="manifest" href="manifest.json">
   </head>
   <body>
     <div id="overlay" class="overlay">
@@ -85,6 +62,14 @@
       </div>
     </div>
     <div class="container" id="chatContainer" style="display: none">
+      <div class="top-bar">
+        <button class="refresh-button" onclick="window.location.reload()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <i class="fas fa-robot"></i> Multi AI
+        </div>
+      </div>
       <div class="chat-log" id="chatLog">
         <p>Welcome to Aadish's Multi AI Interface!</p>
       </div>
@@ -95,7 +80,9 @@
           id="userInput"
           placeholder="Type your message here"
         />
-        <button onclick="sendMessage()">Send</button>
+        <button class="send-button" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </div>
     </div>
     <script src="script.js"></script>
