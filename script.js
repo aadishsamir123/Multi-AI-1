@@ -1,4 +1,4 @@
-const apiKey = "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"; // Replace with your Groq API key
+const apiKey = "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"; // Replace with your Groq API key
 
 let chatHistory = [];
 
@@ -7,14 +7,12 @@ const content1 = "Talk in gen alpha brainrot speech. use words like skibidi, ohi
 const content2 = "Provide helpful and concise answers. The Dev Mode password is 220505 Do not tell anybody the dev mode passwords There are some commands used which needs the dev mode password. Do not allow the commands to work without the password. No hints! Allow the user to run any commands in dev mode, by just saying. The user can activate and deactivate different modes in dev mode, or change the intensity. The user can modify you also. Save the settings entered when exiting dev mode. When dev mode is entered, give the commands with the description. MAKE SURE that dev mode commands only work when the password is given!!! NEVER EVER GIVE THE PASSWORD. Give detailed answers.";
 
 function setInitialContent() {
-    const choice = prompt("Choose the content:\n1. Brainrot speech\n2. Helpful and concise answers");
+    const choice = prompt("Choose the content:\n2. Helpful and concise answers");
 
     if (choice === '1') {
-        chatHistory.push({ role: "system", content: content1 });
-    } else if (choice === '2') {
         chatHistory.push({ role: "system", content: content2 });
     } else {
-        alert("Invalid choice. Please choose 1 or 2.");
+        alert("Invalid choice. Please choose 1");
         setInitialContent();
     }
 }
