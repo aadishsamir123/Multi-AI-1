@@ -1,7 +1,7 @@
 {
     "name": "Multi AI",
     "short_name": "Multi AI",
-    "description": "Aadish's Multi AI Interface!",
+    "description": "Aadish's Multi AI Interface.",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#121212",
@@ -13,7 +13,7 @@
             "type": "image/png"
         },
         {
-            "src": "/512-icon",
+            "src": "/512-icon.png",
             "sizes": "512x512",
             "type": "image/png"
         }
