@@ -1,22 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gen Alpha AI</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="chat-log" id="chatLog">
-            <p>Gen Alpha AI</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi AI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/b0efd9a5a2.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+  <body>
+    <div id="overlay" class="overlay">
+      <div class="modal">
+        <h2>Select Content Type</h2>
+        <div class="choices">
+          <button onclick="setInitialContent(1)">
+            <i class="fas fa-check-circle"></i>
+            Helpful and concise answers
+          </button>
+          <button onclick="setInitialContent(2)">
+            <i class="fas fa-paint-brush"></i>
+            Answers with creativity
+          </button>
+          <button onclick="setInitialContent(3)">
+            <i class="fas fa-code"></i>
+            Code and programming
+          </button>
+          <button onclick="setInitialContent(4)">
+            <i class="fas fa-headset"></i>
+            Customer support
+          </button>
+          <button onclick="setInitialContent(5)">
+            <i class="fas fa-book"></i>
+            Research and education
+          </button>
+          <button onclick="setInitialContent(6)">
+            <i class="fas fa-heartbeat"></i>
+            Health and medical advice
+          </button>
+          <button onclick="setInitialContent(7)">
+            <i class="fas fa-lightbulb"></i>
+            Innovative solutions
+          </button>
+          <button onclick="setInitialContent(8)">
+            <i class="fas fa-hands-helping"></i>
+            General assistance
+          </button>
+          <button onclick="setInitialContent(9)">
+            <i class="fas fa-robot"></i>
+            AI and machine learning
+          </button>
         </div>
-        <div class="model-label" id="modelLabel">Model: gpt-3.5-turbo</div>
-        <div class="user-input">
-            <input type="text" id="userInput" placeholder="Type your message here">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+      </div>
+    </div>
+    <div class="container" id="chatContainer" style="display: none">
+      <div class="chat-log" id="chatLog">
+        <p>Welcome to Aadish's Multi AI Interface!</p>
+      </div>
+      <div class="model-label" id="modelLabel">llama</div>
+      <div class="user-input">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type your message here"
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
