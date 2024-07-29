@@ -22,14 +22,15 @@ body, html {
 .top-bar {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center align the items horizontally */
     padding: 10px;
     border-bottom: 1px solid #333;
     background-color: #1e1e1e;
 }
 
 .refresh-button {
-    background-color: #007bff;
-    border: none;
+    background-color: #1e1e1e; /* Same as background color */
+    border: 1px solid #333;
     color: white;
     cursor: pointer;
     padding: 10px;
@@ -39,7 +40,8 @@ body, html {
 }
 
 .refresh-button:hover {
-    background-color: #0056b3;
+    background-color: #333; /* Darker color on hover */
+    border: 1px solid #ffffff;
 }
 
 .version {
@@ -53,11 +55,54 @@ body, html {
     align-items: center;
     color: white;
     font-size: 20px;
+    text-align: center; /* Center the text within the logo */
 }
 
 .logo i {
     font-size: 24px; /* Adjust as needed */
     margin-right: 10px;
+}
+
+.more-button {
+    background-color: #1e1e1e; /* Same as background color */
+    border: 1px solid #333;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: auto; /* Aligns button to the right */
+    font-size: 20px;
+}
+
+.more-button:hover {
+    background-color: #333; /* Darker color on hover */
+    border: 1px solid #ffffff;
+}
+
+.more-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 60px; /* Adjust based on your top-bar height */
+    right: 10px; /* Align with the more button */
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.more-menu button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.more-menu button:hover {
+    background-color: #333;
 }
 
 .chat-log {
@@ -94,21 +139,18 @@ body, html {
 }
 
 .user-input .send-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: #1e1e1e; /* Same as background color */
     border: 1px solid #333;
     border-radius: 4px;
-    background-color: #007bff;
     color: white;
     cursor: pointer;
-}
-
-.user-input .send-button i {
-    font-size: 16px; /* Adjust as needed */
+    padding: 10px 20px;
+    font-size: 16px;
 }
 
 .user-input .send-button:hover {
-    background-color: #0056b3;
+    background-color: #333; /* Darker color on hover */
+    border: 1px solid #ffffff;
 }
 
 /* Existing CSS ... */
@@ -166,4 +208,52 @@ body, html {
 
 .choices button:hover {
     background-color: #0056b3;
+}
+
+/* Existing styles ... */
+
+.version-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.version-modal-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+}
+
+.version-modal-content h2 {
+    margin: 0;
+    color: #ffffff;
+}
+
+.version-modal-content p {
+    margin: 20px 0 0;
+    color: #ffffff;
+}
+
+.version-modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.version-modal .close:hover {
+    color: #ff0000;
 }
