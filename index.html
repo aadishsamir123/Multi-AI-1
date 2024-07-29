@@ -36,43 +36,45 @@
   <body>
     <div id="overlay" class="overlay">
       <div class="modal">
-        <h2>Select Content Type</h2>
+        <div class="logo"><i class="fas fa-robot"></i> Multi AI</div>
+        <h2>Choose Content Type</h2>
+
         <div class="choices">
-          <button onclick="setInitialContent(1)">
-            <i class="fas fa-check-circle"></i>
-            Helpful and concise answers
+          <button onclick="setInitialContent(9)">
+            <i class="fas fa-robot"></i>
+            AI and Machine Learning
           </button>
           <button onclick="setInitialContent(2)">
             <i class="fas fa-paint-brush"></i>
-            Answers with creativity
+            Answers with Creativity
           </button>
           <button onclick="setInitialContent(3)">
             <i class="fas fa-code"></i>
-            Code and programming
+            Code and Programming
           </button>
           <button onclick="setInitialContent(4)">
             <i class="fas fa-headset"></i>
-            Customer support
-          </button>
-          <button onclick="setInitialContent(5)">
-            <i class="fas fa-book"></i>
-            Research and education
-          </button>
-          <button onclick="setInitialContent(6)">
-            <i class="fas fa-heartbeat"></i>
-            Health and medical advice
-          </button>
-          <button onclick="setInitialContent(7)">
-            <i class="fas fa-lightbulb"></i>
-            Innovative solutions
+            Customer Support
           </button>
           <button onclick="setInitialContent(8)">
             <i class="fas fa-hands-helping"></i>
-            General assistance
+            General Assistance
           </button>
-          <button onclick="setInitialContent(9)">
-            <i class="fas fa-robot"></i>
-            AI and machine learning
+          <button onclick="setInitialContent(6)">
+            <i class="fas fa-heartbeat"></i>
+            Health and Medical Advice
+          </button>
+          <button onclick="setInitialContent(1)">
+            <i class="fas fa-check-circle"></i>
+            Helpful and Concise answers
+          </button>
+          <button onclick="setInitialContent(7)">
+            <i class="fas fa-lightbulb"></i>
+            Innovative Solutions
+          </button>
+          <button onclick="setInitialContent(5)">
+            <i class="fas fa-book"></i>
+            Research and Education
           </button>
         </div>
       </div>
@@ -83,7 +85,7 @@
           <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo"><i class="fas fa-robot"></i> Multi AI</div>
-        <div class="version">v2.10.6</div>
+        <div class="version">v2.10.7-alpha</div>
       </div>
       <div class="chat-log" id="chatLog">
         <p>Welcome to Aadish's Multi AI Interface!</p>
@@ -95,6 +97,8 @@
           this content are at your own risk. It is recommended to conduct
           further research to validate and supplement the information provided.
         </p>
+        <p>This tool is still in alpha. Submit feedback at this link:</p>
+        <a href="https://forms.gle/4rGqrrkUnWLZgrnbA">https://forms.gle/4rGqrrkUnWLZgrnbA</a>
       </div>
       <div class="model-label" id="modelLabel">llama</div>
       <div class="user-input">
