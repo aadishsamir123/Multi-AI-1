@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Multi AI</title>
@@ -10,106 +10,106 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <link rel="manifest" href="manifest.json" />
-
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Multi AI" />
     <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs." />
     <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI" />
     <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/1024-icon.png" />
     <meta property="og:type" content="website" />
-</head>
-<body>
+  </head>
+  <body>
     <div id="overlay" class="overlay">
-        <div class="modal">
-            <div class="logo"><i class="fas fa-robot"></i> Multi AI</div>
-            <h2>Choose Content Type</h2>
-            <div class="choices-container">
-                <div class="choices section-informative">
-                    <h3>--Informative Models--</h3>
-                    <h4>These models are for getting information.</h4>
-                    <button onclick="setInitialContent(9)">
-                        <i class="fas fa-robot"></i> AI and Machine Learning
-                    </button>
-                    <button onclick="setInitialContent(2)">
-                        <i class="fas fa-paint-brush"></i> Answers with Creativity
-                    </button>
-                    <button onclick="setInitialContent(3)">
-                        <i class="fas fa-code"></i> Code and Programming
-                    </button>
-                    <button onclick="setInitialContent(8)">
-                        <i class="fas fa-hands-helping"></i> General Assistance
-                    </button>
-                    <button onclick="setInitialContent(6)">
-                        <i class="fas fa-heartbeat"></i> Health and Medical Advice
-                    </button>
-                    <button onclick="setInitialContent(1)">
-                        <i class="fas fa-check-circle"></i> Helpful and Concise answers
-                    </button>
-                    <button onclick="setInitialContent(7)">
-                        <i class="fas fa-lightbulb"></i> Innovative Solutions
-                    </button>
-                    <button onclick="setInitialContent(5)">
-                        <i class="fas fa-book"></i> Research and Education
-                    </button>
-                </div>
-                <div class="choices section-fun">
-                    <h3>--Fun Models--</h3>
-                    <h4>These models are for fun use.</h4>
-                    <button onclick="setInitialContent(10)">
-                        <i class="fa fa-female"></i> Praneethika Maya AI Bot
-                    </button>
-                    <button onclick="setInitialContent(11)">
-                        <i class="fa fa-brain"></i> Brainrot Bot
-                    </button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="logo"><i class="fas fa-robot"></i> Multi AI</div>
+        <h2>Choose Content Type</h2>
+        <div class="choices-container">
+          <div class="choices section-informative">
+            <h3>--Informative Models--</h3>
+            <h4>These models are for getting information.</h4>
+            <button onclick="setInitialContent(9)">
+              <i class="fas fa-robot"></i> AI and Machine Learning
+            </button>
+            <button onclick="setInitialContent(2)">
+              <i class="fas fa-paint-brush"></i> Answers with Creativity
+            </button>
+            <button onclick="setInitialContent(3)">
+              <i class="fas fa-code"></i> Code and Programming
+            </button>
+            <button onclick="setInitialContent(8)">
+              <i class="fas fa-hands-helping"></i> General Assistance
+            </button>
+            <button onclick="setInitialContent(6)">
+              <i class="fas fa-heartbeat"></i> Health and Medical Advice
+            </button>
+            <button onclick="setInitialContent(1)">
+              <i class="fas fa-check-circle"></i> Helpful and Concise answers
+            </button>
+            <button onclick="setInitialContent(7)">
+              <i class="fas fa-lightbulb"></i> Innovative Solutions
+            </button>
+            <button onclick="setInitialContent(5)">
+              <i class="fas fa-book"></i> Research and Education
+            </button>
+          </div>
+          <br><br>
+          <div class="choices section-fun">
+            <h3>--Fun Models--</h3>
+            <h4>These models are for fun use.</h4>
+            <button onclick="setInitialContent(10)">
+              <i class="fa fa-female"></i> Praneethika Maya AI Bot
+            </button>
+            <button onclick="setInitialContent(11)">
+              <i class="fa fa-brain"></i> Brainrot Bot
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="container" id="chatContainer" style="display: none">
-        <div class="top-bar">
-            <button class="refresh-button" onclick="window.location.reload()">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <div class="logo" id="topBarLogo">
-                <i class="fas fa-robot"></i> Multi AI
-            </div>
-            <button class="more-button" onclick="toggleMoreMenu()">
-                <i class="fas fa-ellipsis-v"></i>
-            </button>
+      <div class="top-bar">
+        <button class="refresh-button" onclick="window.location.reload()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo" id="topBarLogo">
+          <i class="fas fa-robot"></i> Multi AI
         </div>
-        <div id="moreMenu" class="more-menu">
-            <button onclick="showVersion()">
-                <i class="fas fa-info-circle"></i> Version
-            </button>
+        <button class="more-button" onclick="toggleMoreMenu()">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </div>
+      <div id="moreMenu" class="more-menu">
+        <button onclick="showVersion()">
+          <i class="fas fa-info-circle"></i> Version
+        </button>
+      </div>
+      <div id="versionModal" class="version-modal">
+        <div class="version-modal-content">
+          <span class="close" onclick="closeVersionModal()">&times;</span>
+          <h2>Version Information</h2>
+          <p>Version: v0.12.0-alpha</p>
         </div>
-        <div id="versionModal" class="version-modal">
-            <div class="version-modal-content">
-                <span class="close" onclick="closeVersionModal()">&times;</span>
-                <h2>Version Information</h2>
-                <p>Version: v0.12.0-alpha</p>
-            </div>
-        </div>
-        <div class="chat-log" id="chatLog">
-            <p>Welcome to Aadish's Multi AI Interface!</p>
-            <p>
-                <bold>NOTICE: </bold>The following content has been automatically
-                generated by an AI system and should be used for informational
-                purposes only. The accuracy, completeness, or timeliness of the
-                information provided is not guaranteed. Any actions taken based on
-                this content are at your own risk. It is recommended to conduct
-                further research to validate and supplement the information provided.
-            </p>
-            <p>This tool is still in alpha. Submit feedback at this link:</p>
-            <a href="https://forms.gle/4rGqrrkUnWLZgrnbA">https://forms.gle/4rGqrrkUnWLZgrnbA</a>
-        </div>
-        <div class="model-label" id="modelLabel">llama</div>
-        <div class="user-input">
-            <input type="text" id="userInput" placeholder="Type your message here" />
-            <button class="send-button" onclick="sendMessage()">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
+      </div>
+      <div class="chat-log" id="chatLog">
+        <p>Welcome to Aadish's Multi AI Interface!</p>
+        <p>
+          <bold>NOTICE: </bold>The following content has been automatically
+          generated by an AI system and should be used for informational
+          purposes only. The accuracy, completeness, or timeliness of the
+          information provided is not guaranteed. Any actions taken based on
+          this content are at your own risk. It is recommended to conduct
+          further research to validate and supplement the information provided.
+        </p>
+        <p>This tool is still in alpha. Submit feedback at this link:</p>
+        <a href="https://forms.gle/4rGqrrkUnWLZgrnbA">https://forms.gle/4rGqrrkUnWLZgrnbA</a>
+      </div>
+      <div class="model-label" id="modelLabel">llama</div>
+      <div class="user-input">
+        <input type="text" id="userInput" placeholder="Type your message here" />
+        <button class="send-button" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

@@ -96,7 +96,7 @@ function sendMessage() {
     const userInput = document.getElementById("userInput").value;
     if (userInput.trim()) {
         const chatLog = document.getElementById("chatLog");
-        chatLog.innerHTML += `<br><br><p>You: ${userInput.replace(/\n/g, '<br>')}</p><br>`;
+        chatLog.innerHTML += `<p>You: ${userInput.replace(/\n/g, '<br>')}</p><br>`;
         document.getElementById("userInput").value = "";
 
         chatHistory.push({ role: "user", content: userInput });
