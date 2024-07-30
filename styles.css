@@ -113,47 +113,99 @@ body, html {
     background-color: #1e1e1e;
 }
 
-.chat-log p {
-    margin: 10px 0;
-}
-
-.model-label, .user-input {
-    padding: 10px;
-    border-top: 1px solid #333;
-    background-color: #1e1e1e;
-}
-
 .user-input {
     display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #1e1e1e;
 }
 
 .user-input input {
     flex: 1;
     padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #121212;
+    color: white;
+}
+
+.send-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+
+.version-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.version-modal-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.version-modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.choices button {
+    padding: 10px;
     font-size: 16px;
     border: 1px solid #333;
     border-radius: 4px;
-    background-color: #333;
-    color: #ffffff;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.choices button i {
     margin-right: 10px;
 }
 
-.user-input .send-button {
-    background-color: #1e1e1e; /* Same as background color */
-    border: 1px solid #333;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 16px;
+.choices button:hover {
+    background-color: #0056b3;
 }
-
-.user-input .send-button:hover {
-    background-color: #333; /* Darker color on hover */
-    border: 1px solid #ffffff;
-}
-
-/* Existing CSS ... */
 
 .overlay {
     position: fixed;
@@ -161,7 +213,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,86 +226,7 @@ body, html {
     border-radius: 8px;
     text-align: center;
     width: 80%;
-    max-width: 600px; /* Adjusted to accommodate more buttons */
-}
-
-.modal h2 {
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-.choices {
-    display: flex;
-    flex-direction: column; /* Ensure buttons stack vertically */
-    align-items: stretch; /* Stretch buttons to the full width */
-}
-
-.choices button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.choices button i {
-    margin-right: 10px;
-}
-
-.choices button:hover {
-    background-color: #0056b3;
-}
-
-/* Existing styles ... */
-
-.version-modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-}
-
-.version-modal-content {
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-    position: relative;
-}
-
-.version-modal-content h2 {
-    margin: 0;
-    color: #ffffff;
-}
-
-.version-modal-content p {
-    margin: 20px 0 0;
-    color: #ffffff;
-}
-
-.version-modal .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #ffffff;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.version-modal .close:hover {
-    color: #ff0000;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
 }
