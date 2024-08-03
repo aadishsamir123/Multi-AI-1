@@ -1,21 +1,23 @@
 {
-    "name": "Multi AI",
-    "short_name": "Multi AI",
-    "description": "Aadish's Multi AI Interface.",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#121212",
-    "theme_color": "#030303",
-    "icons": [
-        {
-            "src": "192-icon.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "512-icon.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ]
+  "name": "Multi AI",
+  "short_name": "Multi AI",
+  "description": "Aadish's Multi AI Interface.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#030303",
+  "icons": [
+    {
+      "src": "192-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "512-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "Multi-AI",
+  "lang": "en"
 }
