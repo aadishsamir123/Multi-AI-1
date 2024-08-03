@@ -1,5 +1,6 @@
 {
   "name": "Multi AI",
+  "orientation": "any",
   "short_name": "Multi AI",
   "description": "Aadish's Multi AI Interface.",
   "start_url": ".",
