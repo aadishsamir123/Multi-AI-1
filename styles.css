@@ -30,7 +30,7 @@ body, html {
     border-bottom: 1px solid #333;
     background-color: #1e1e1e;
     width: 100%;
-    max-width: 98.3%; /* Ensure the top-bar is within the container */
+    max-width: 98.9%; /* Ensure the top-bar is within the container */
     position: sticky;
     top: 0;
 }
