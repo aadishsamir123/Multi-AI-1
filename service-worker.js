@@ -1,3 +1,7 @@
+// MIT License
+// Copyright (c) [year] [Your Name]
+// See the LICENSE file in the root of this repository for details.
+
 const CACHE_NAME = 'pwa-cache';
 const urlsToCache = [
     '/',

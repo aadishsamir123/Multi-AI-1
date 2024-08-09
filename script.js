@@ -1,3 +1,7 @@
+// MIT License
+// Copyright (c) [year] [Your Name]
+// See the LICENSE file in the root of this repository for details.
+
 // Register the service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
