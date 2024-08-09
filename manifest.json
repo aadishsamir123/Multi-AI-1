@@ -20,5 +20,8 @@
     }
   ],
   "id": "Multi-AI",
-  "lang": "en"
+  "lang": "en",
+  "display_override": [
+    "window-controls-overlay"
+  ]
 }
