@@ -82,6 +82,22 @@ body, html {
     font-size: 20px;
 }
 
+.more-button-overlay {
+    background-color: #1e1e1e; /* Same as background color */
+    border: 1px solid #333;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: auto; /* Aligns button to the right */
+    font-size: 20px;
+}
+
+.more-button-overlay:hover {
+    background-color: #333; /* Darker color on hover */
+    border: 1px solid #ffffff;
+}
+
 .more-button:hover {
     background-color: #333; /* Darker color on hover */
     border: 1px solid #ffffff;
@@ -310,4 +326,24 @@ body, html {
 
 .offline-overlay p {
     font-size: 18px;
+}
+
+/* Splash Screen Styles */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212; /* Match your theme color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Ensure it's above other content */
+    color: white;
+    text-align: center;
+}
+
+.splash-screen .splash-content {
+    font-size: 24px;
 }
