@@ -5,8 +5,8 @@
   "description": "Aadish's Multi AI Interface.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#121212",
-  "theme_color": "#121212",
+  "background_color": "#1e1e1e",
+  "theme_color": "#1e1e1e",
   "icons": [
     {
       "src": "assets/192-icon.png",
