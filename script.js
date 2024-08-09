@@ -17,6 +17,31 @@ function showVersion() {
     document.getElementById("versionModal").style.display = "flex";
 }
 
+function updateApp() {
+    // Unregister the service worker
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(registration => {
+                registration.unregister();
+            });
+        });
+    }
+
+    // Clear caches
+    caches.keys().then(cacheNames => {
+        return Promise.all(
+            cacheNames.map(cacheName => {
+                return caches.delete(cacheName);
+            })
+        );
+    }).then(() => {
+        // Reload the page after clearing the cache
+        window.location.reload(true);
+    }).catch(err => {
+        console.error('Error clearing cache:', err);
+    });
+}
+
 function closeVersionModal() {
     document.getElementById("versionModal").style.display = "none";
 }

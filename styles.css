@@ -63,6 +63,7 @@ body, html {
     color: white;
     font-size: 20px;
     text-align: center; /* Center the text within the logo */
+    padding-top: 20px;
 }
 
 .logo i {
@@ -234,28 +235,34 @@ body, html {
     background-color: #0056b3;
 }
 
+/* Ensure full-screen overlay */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #121212; /* Match the background color */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+/* Full-screen modal with padding around the content */
 .modal {
     background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 80%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto; /* Allow scrolling if content overflows */
+    padding: 20px; /* Padding around the content */
+    border-radius: 8px; /* Optional: Rounded corners for smooth look */
+    width: calc(100% - 0px); /* Full width minus padding */
+    height: calc(100% - 0px); /* Full height minus padding */
+    max-width: 100%; /* Allow modal to expand fully */
+    max-height: 100%; /* Allow modal to expand fully */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+/*    box-sizing: border-box; !* Include padding in width and height calculations *!*/
 }
 
 .model-label {
@@ -267,4 +274,40 @@ body, html {
     background-color: #1e1e1e; /* Optional: Background color for better visibility */
     width: calc(100% - 20px); /* Adjust width to account for padding */
     margin: 0 auto; /* Center horizontally */
+}
+
+.offline-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    text-align: center;
+}
+
+.offline-overlay .icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the icons */
+    margin-bottom: 20px;
+}
+
+.offline-overlay .icons i {
+    font-size: 50px;
+}
+
+.offline-overlay h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.offline-overlay p {
+    font-size: 18px;
 }
