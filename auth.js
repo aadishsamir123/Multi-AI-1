@@ -153,13 +153,31 @@ function login() {
     });
 }
 
-//function signOut() {
-//  auth.signOut()
-//    .then(() => {
-//      document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";  // Delete the cookie
-//      redirectToPage('index.html');  // Redirect to index.html
-//    })
-//    .catch(error => {
-//      showError('Error signing out: ' + error.message);
-//    });
-//}
+// Google Sign-In function
+function googleSignIn() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  auth.signInWithPopup(provider)
+    .then(result => {
+      // This gives you a Google Access Token. You can use it to access Google APIs.
+      const token = result.credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // Save user data to the database if needed
+      const database_ref = database.ref();
+      const user_data = {
+        email: user.email,
+        last_login: Date.now()
+      };
+      database_ref.child('users/' + user.uid).set(user_data);
+      // Set cookie for auto-login
+      document.cookie = `user=${user.uid}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+      redirectToPage('home.html');  // Redirect to the home page
+    })
+    .catch(error => {
+      showError(error.message);
+    });
+}
+
+// Uncomment this part if you want to add sign out functionality
+//
