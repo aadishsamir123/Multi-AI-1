@@ -47,7 +47,7 @@ html, body {
     padding-top: 30px;
 
     border-bottom: 1px solid transparent;
-    background: #2e2e2e;
+    background: #1e1e1e;
 }
 
 #form_header {
@@ -73,7 +73,7 @@ html, body {
     justify-content: center;
     align-items: center;
 
-    background: #2e2e2e;
+    background: #1e1e1e;
     padding-top: 30px;
 }
 
