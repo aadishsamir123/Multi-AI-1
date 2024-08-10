@@ -3,49 +3,54 @@
 <!--See the LICENSE file in the root of this repository for details.-->
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="manifest" href="manifest.json"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Login - Multi AI</title>
-    <link rel="stylesheet" type="text/css" href="login-styles.css">
-    <!-- Cool Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Multi AI"/>
-    <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs."/>
-    <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI"/>
-    <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
-    <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
-    <meta property="og:type" content="website"/>
-</head>
-<body>
-    <div id="content_container">
-        <div id="form_header_container">
-            <h2 id="form_header">Login/Register</h2>
+    <head>
+        <link rel="manifest" href="manifest.json"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Login - Multi AI</title>
+        <link rel="stylesheet" type="text/css" href="login-styles.css">
+        <!-- Cool Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Multi AI"/>
+        <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs."/>
+        <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI"/>
+        <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
+        <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
+        <meta property="og:type" content="website"/>
+    </head>
+    <body>
+        <div id="splashScreen" class="splash-screen">
+            <div class="splash-content">
+                <h1>Loading...</h1>
+            </div>
         </div>
+        <div id="content_container">
+            <div id="form_header_container">
+                <h2 id="form_header">Login/Register</h2>
+            </div>
 
-        <div id="form_content_container">
-            <div id="form_content_inner_container">
+            <div id="form_content_container">
+                <div id="form_content_inner_container">
 
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="password" id="password" placeholder="Password" required>
 
-                <div id="button_container">
-                    <button onclick="login()">Login</button>
-                    <button onclick="register()">Register</button>
+                    <div id="button_container">
+                        <button onclick="login()">Login</button>
+                        <button onclick="register()">Register</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 
-    <!-- Your script -->
-    <script src="auth.js"></script>
-</body>
+        <!-- Your script -->
+        <script src="auth.js"></script>
+    </body>
 </html>
