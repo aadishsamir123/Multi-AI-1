@@ -4,7 +4,7 @@
   "short_name": "Multi AI",
   "description": "Aadish's Multi AI Interface.",
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#1e1e1e",
   "theme_color": "#1e1e1e",
   "icons": [
@@ -22,6 +22,11 @@
   "id": "Multi-AI",
   "lang": "en",
   "display_override": [
-    "window-controls-overlay"
+    "window-controls-overlay",
+    "fullscreen"
+  ],
+  "dir": "ltr",
+  "categories": [
+    "utilities"
   ]
 }
