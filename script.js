@@ -11,12 +11,12 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-window.addEventListener('load', () => {
-    if (!window.matchMedia('(display-mode: fullscreen)').matches) {
-        // Redirect to another page if the PWA is not installed
-        window.location.href = 'install.html'; // Replace 'install.html' with the URL of your installation page
-    }
-});
+//window.addEventListener('load', () => {
+//    if (!window.matchMedia('(display-mode: fullscreen)').matches) {
+//        // Redirect to another page if the PWA is not installed
+//        window.location.href = 'install.html'; // Replace 'install.html' with the URL of your installation page
+//    }
+//});
 
 // Toggle the "More" menu visibility
 function toggleMoreMenu() {
