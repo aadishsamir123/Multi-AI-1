@@ -152,7 +152,7 @@ function login() {
         last_login: Date.now()
       };
       database_ref.child('users/' + user.uid).update(user_data);
-      document.cookie = `user=${user.uid}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;  // Set cookie for auto-login
+      document.cookie = `user=${user.uid}; path=/; max-age=2592000`;  // Set cookie for auto-login
       redirectToPage('home.html');  // Redirect to the home page
     })
     .catch(error => {
@@ -178,7 +178,7 @@ function googleSignIn() {
       };
       database_ref.child('users/' + user.uid).set(user_data);
       // Set cookie for auto-login
-      document.cookie = `user=${user.uid}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+      document.cookie = `user=${user.uid}; path=/; max-age=2592000`;
       redirectToPage('home.html');  // Redirect to the home page
     })
     .catch(error => {

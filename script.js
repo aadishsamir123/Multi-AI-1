@@ -11,6 +11,43 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+function redirectToPage(page) {
+    window.location.href = page;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function checkAuthAndRedirect() {
+    let isRedirecting = false;
+
+    const uid = getCookie('user');
+    if (uid) {
+        auth.onAuthStateChanged(user => {
+            if (isRedirecting) return;  // Prevent multiple alerts and redirects
+
+            if (user && user.uid === uid) {
+                // redirectToPage('home.html');  // Uncomment if you want to redirect to home.html if UID is valid
+            } else {
+                isRedirecting = true;
+                alert('Authentication Error');
+                redirectToPage('index.html');  // Redirect to index.html if UID is invalid
+            }
+        });
+    } else {
+        if (isRedirecting) return;  // Prevent multiple alerts and redirects
+
+        isRedirecting = true;
+        alert('Authentication Error');
+        redirectToPage('index.html');  // Redirect to index.html if no cookie is found
+    }
+}
+
+setTimeout(() => {  checkAuthAndRedirect(); }, 500);
+
 //window.addEventListener('load', () => {
 //    if (!window.matchMedia('(display-mode: fullscreen)').matches) {
 //        // Redirect to another page if the PWA is not installed
@@ -201,5 +238,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function signOut() {
     document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Delete the cookie
-    window.location.href ="index.html"; // Redirect to index.html
+    window.location.href = "index.html"; // Redirect to index.html
 }
