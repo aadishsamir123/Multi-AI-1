@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCSUD-S4p6eNREfTu111tfpCPm6JYDBuEE",
-  authDomain: "multi-ai-9278f.firebaseapp.com",
-  projectId: "multi-ai-9278f",
-  storageBucket: "multi-ai-9278f.appspot.com",
-  messagingSenderId: "672256086419",
-  appId: "1:672256086419:web:4a5d0585b4b17f127b5866",
-  measurementId: "G-2DNY2VK422"
+    apiKey: "AIzaSyCSUD-S4p6eNREfTu111tfpCPm6JYDBuEE",
+    authDomain: "multi-ai-9278f.firebaseapp.com",
+    projectId: "multi-ai-9278f",
+    storageBucket: "multi-ai-9278f.appspot.com",
+    messagingSenderId: "672256086419",
+    appId: "1:672256086419:web:4a5d0585b4b17f127b5866",
+    measurementId: "G-2DNY2VK422"
 };
 
 // Initialize Firebase
@@ -61,48 +61,68 @@ const database = firebase.database();
 
 // Function to validate email
 function validate_email(email) {
-  const expression = /^[^@]+@\w+(\.\w+)+\w$/;
-  return expression.test(email);
+    const expression = /^[^@]+@\w+(\.\w+)+\w$/;
+    return expression.test(email);
 }
 
 // Function to validate password
 function validate_password(password) {
-  return password.length >= 6;
+    return password.length >= 6;
 }
 
-// Function to display error messages
-function showError(message) {
-  const errorMessageDiv = document.getElementById('errorMessage');
-  if (errorMessageDiv) {
-    errorMessageDiv.textContent = message;
-    errorMessageDiv.style.display = 'block';
-  } else {
-    alert(message);
+function showError(error) {
+  let message;
+
+  // Log the entire error object to understand its structure
+  console.log('Error object:', error);
+
+  // Extract error details from the response
+  const errorCode = error.error?.code;
+  const errorMessage = error.error?.message || error.message;
+
+  switch (error) {
+    case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+      message = 'Email does not exist';
+      break;
+    case 'The password is invalid or the user does not have a password.':
+      message = 'Incorrect password/Created account using Google.';
+      break;
+    case 'The user account has been disabled by an administrator.':
+      message = 'The account has been disabled.'
+      break;
+    case 'Invalid email or password.':
+      message = 'Invalid email or password format. Please make sure the password is at least 6 characters.'
+      break;
+    default:
+      message = 'The request was invalid. Please check the details and try again.';
+      break;
   }
-}
 
+  // Display the error message
+  alert(message);
+}
 // Function to get cookie value by name
 function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 // Function to redirect to a specific page
 function redirectToPage(page) {
-  window.location.href = page;
+    window.location.href = page;
 }
 
 // Function to check if user is authenticated and redirect accordingly
 function checkAuthAndRedirect() {
-  const uid = getCookie('user');
-  if (uid) {
-    auth.onAuthStateChanged(user => {
-      if (user && user.uid === uid) {
-        redirectToPage('home.html');  // Redirect to index.html if UID is valid
-      }
-    });
-  }
+    const uid = getCookie('user');
+    if (uid) {
+        auth.onAuthStateChanged(user => {
+            if (user && user.uid === uid) {
+                redirectToPage('home.html');  // Redirect to index.html if UID is valid
+            }
+        });
+    }
 }
 
 // Call checkAuthAndRedirect on page load
@@ -110,81 +130,82 @@ document.addEventListener('DOMContentLoaded', checkAuthAndRedirect);
 
 // Register function with error handling
 function register() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-  if (!validate_email(email) || !validate_password(password)) {
-    showError('Invalid email or password');
-    return;
-  }
+    if (!validate_email(email) || !validate_password(password)) {
+        showError('Invalid email or password');
+        return;
+    }
 
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      const user = auth.currentUser;
-      const database_ref = database.ref();
-      const user_data = {
-        email: email,
-        last_login: Date.now()
-      };
-      database_ref.child('users/' + user.uid).set(user_data);
-      redirectToPage('home.html');  // Redirect to the home page
-    })
-    .catch(error => {
-      showError(error.message);
-    });
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            const user = auth.currentUser;
+            const database_ref = database.ref();
+            const user_data = {
+                email: email,
+                last_login: Date.now()
+            };
+            database_ref.child('users/' + user.uid).set(user_data);
+            redirectToPage('home.html');  // Redirect to the home page
+        })
+        .catch(error => {
+            showError(error.message);
+        });
 }
 
 // Login function with error handling
 function login() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-  if (!validate_email(email) || !validate_password(password)) {
-    showError('Invalid email or password.');
-    return;
-  }
+    if (!validate_email(email) || !validate_password(password)) {
+        showError('Invalid email or password.');
+        return;
+    }
 
-  auth.signInWithEmailAndPassword(email, password)
-    .then(() => {
-      const user = auth.currentUser;
-      const database_ref = database.ref();
-      const user_data = {
-        last_login: Date.now()
-      };
-      database_ref.child('users/' + user.uid).update(user_data);
-      document.cookie = `user=${user.uid}; path=/; max-age=2592000`;  // Set cookie for auto-login
-      redirectToPage('home.html');  // Redirect to the home page
-    })
-    .catch(error => {
-      showError(error.message);
-    });
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            const user = auth.currentUser;
+            const database_ref = database.ref();
+            const user_data = {
+                last_login: Date.now()
+            };
+            database_ref.child('users/' + user.uid).update(user_data);
+            document.cookie = `user=${user.uid}; path=/; max-age=2592000`;  // Set cookie for auto-login
+            redirectToPage('home.html');  // Redirect to the home page
+        })
+        .catch(error => {
+            showError(error.message);
+        });
 }
 
 // Google Sign-In function
 function googleSignIn() {
-  const provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
 
-  auth.signInWithPopup(provider)
-    .then(result => {
-      // This gives you a Google Access Token. You can use it to access Google APIs.
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // Save user data to the database if needed
-      const database_ref = database.ref();
-      const user_data = {
-        email: user.email,
-        last_login: Date.now()
-      };
-      database_ref.child('users/' + user.uid).set(user_data);
-      // Set cookie for auto-login
-      document.cookie = `user=${user.uid}; path=/; max-age=2592000`;
-      redirectToPage('home.html');  // Redirect to the home page
-    })
-    .catch(error => {
-      showError(error.message);
-    });
+    auth.signInWithPopup(provider)
+        .then(result => {
+            // This gives you a Google Access Token. You can use it to access Google APIs.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // Save user data to the database if needed
+            const database_ref = database.ref();
+            const user_data = {
+                email: user.email,
+                last_login: Date.now()
+            };
+            database_ref.child('users/' + user.uid).set(user_data);
+            // Set cookie for auto-login
+            document.cookie = `user=${user.uid}; path=/; max-age=2592000`;
+            redirectToPage('home.html');  // Redirect to the home page
+        })
+        .catch(error => {
+            showError(error.message);
+        });
 }
 
-// Uncomment this part if you want to add sign out functionality
-//
+function passwordReset() {
+    location.href = "password-reset.html"
+}
