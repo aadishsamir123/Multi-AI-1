@@ -11,40 +11,40 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Fetch the current version from the local version.json file
-async function getCurrentVersion() {
-    const response = await fetch('/version.json');
-    const data = await response.json();
-    return data.version;
-}
-
-// Fetch the latest version from the GitHub repository
-async function fetchLatestVersion() {
-    const response = await fetch('https://raw.githubusercontent.com/aadishsamir123/Multi-AI-1/main/version.json');
-    const data = await response.json();
-    return data.version;
-}
-
-// Compare versions and check for updates
-async function checkForUpdates() {
-    const currentVersion = await getCurrentVersion();
-    console.log("Current Version: " + currentVersion)
-    const latestVersion = await fetchLatestVersion();
-    console.log("Latest Version: " + latestVersion)
-
-    if (currentVersion !== latestVersion) {
-        // Trigger an update alert or any other logic
-        onNewUpdateDetected();
-    }
-}
-
-// Function to run when a new update is detected
-function onNewUpdateDetected() {
-    alert("A new update is available! The page will reload.");
-    updateApp()
-}
-// Check for updates periodically (e.g., every 5 minutes)
-setInterval(checkForUpdates, 5000); // 300000ms = 5 minutes
+//// Fetch the current version from the local version.json file
+//async function getCurrentVersion() {
+//    const response = await fetch('/version.json');
+//    const data = await response.json();
+//    return data.version;
+//}
+//
+//// Fetch the latest version from the GitHub repository
+//async function fetchLatestVersion() {
+//    const response = await fetch('https://raw.githubusercontent.com/aadishsamir123/Multi-AI-1/main/version.json');
+//    const data = await response.json();
+//    return data.version;
+//}
+//
+//// Compare versions and check for updates
+//async function checkForUpdates() {
+//    const currentVersion = await getCurrentVersion();
+//    console.log("Current Version: " + currentVersion)
+//    const latestVersion = await fetchLatestVersion();
+//    console.log("Latest Version: " + latestVersion)
+//
+//    if (currentVersion !== latestVersion) {
+//        // Trigger an update alert or any other logic
+//        onNewUpdateDetected();
+//    }
+//}
+//
+//// Function to run when a new update is detected
+//function onNewUpdateDetected() {
+//    alert("A new update is available! The page will reload.");
+//    updateApp()
+//}
+//// Check for updates periodically (e.g., every 5 minutes)
+//setInterval(checkForUpdates, 5000); // 300000ms = 5 minutes
 
 function redirectToPage(page) {
     window.location.href = page;
