@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="manifest" href="manifest.json"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Enter API Key - Multi AI</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://kit.fontawesome.com/b0efd9a5a2.js" crossorigin="anonymous"></script>
+    <style>
+      /* Simple styling for the input form */
+      body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #121212;
+      }
+
+      .form-container {
+        text-align: center;
+      }
+
+      input {
+        padding: 10px;
+        margin: 10px;
+        background: #000;
+        font-family: Roboto;
+        font-weight: 500;
+        color: #fff;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 18px;
+        font-family: Roboto;
+        background: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: #1E90FF;
+        transition: color 0.3s ease;
+      }
+      a:visited {
+        text-decoration: none;
+        color: #1E90FF;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        text-decoration: none;
+        color: #00BFFF;
+        transition: color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Enter Your GROQ API Key</h1>
+      <h2>Get your GROQ API Key by signing in to <a href="https://console.groq.com/keys" target="_blank">this website <i class="fas fa-arrow-up-right-from-square"></i></a></h2>
+      <input type="text" id="apiKeyInput" placeholder="Enter your API key"/>
+      <button onclick="saveApiKey()">Submit</button>
+      <h2></h2>
+      <p>Your API Key is never shared with us. It is stored on-device.</p>
+    </div>
+
+    <script>
+      // Function to set the API key in the cookie
+      function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+      }
+
+      // Function to save the API key and redirect back to home.html
+      function saveApiKey() {
+        const userInput = document.getElementById('apiKeyInput').value;
+        if (userInput) {
+
+          // Save the API key in a cookie (valid for 30 days)
+          setCookie('groqApiKey', userInput, 30);
+
+          // Redirect back to the main content page
+          window.location.href = 'h.html';
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -2,9 +2,9 @@
   "name": "Multi AI",
   "orientation": "any",
   "short_name": "Multi AI",
-  "description": "Aadish's Multi AI Interface.",
+  "description": "Chat with different AI models",
   "start_url": "index.html",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#1e1e1e",
   "theme_color": "#1e1e1e",
   "icons": [
@@ -19,11 +19,25 @@
       "type": "image/png"
     }
   ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop/main.png",
+      "type": "image/png",
+      "sizes": "1618x1660",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/mobile/main.png",
+      "type": "image/png",
+      "sizes": "1618x1660",
+      "form_factor": "narrow"
+    }
+  ],
   "id": "Multi-AI",
   "lang": "en",
   "display_override": [
     "window-controls-overlay",
-    "fullscreen"
+    "standalone"
   ],
   "dir": "ltr",
   "categories": [

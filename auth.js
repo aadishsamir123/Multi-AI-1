@@ -119,7 +119,7 @@ function checkAuthAndRedirect() {
     if (uid) {
         auth.onAuthStateChanged(user => {
             if (user && user.uid === uid) {
-                redirectToPage('home.html');  // Redirect to index.html if UID is valid
+                redirectToPage('h.html');  // Redirect to index.html if UID is valid
             }
         });
     }
@@ -147,7 +147,7 @@ function register() {
                 last_login: Date.now()
             };
             database_ref.child('users/' + user.uid).set(user_data);
-            redirectToPage('home.html');  // Redirect to the home page
+            redirectToPage('h.html');  // Redirect to the home page
         })
         .catch(error => {
             showError(error.message);
@@ -173,7 +173,7 @@ function login() {
             };
             database_ref.child('users/' + user.uid).update(user_data);
             document.cookie = `user=${user.uid}; path=/; max-age=2592000`;  // Set cookie for auto-login
-            redirectToPage('home.html');  // Redirect to the home page
+            redirectToPage('h.html');  // Redirect to the home page
         })
         .catch(error => {
             showError(error.message);
@@ -199,7 +199,7 @@ function googleSignIn() {
             database_ref.child('users/' + user.uid).set(user_data);
             // Set cookie for auto-login
             document.cookie = `user=${user.uid}; path=/; max-age=2592000`;
-            redirectToPage('home.html');  // Redirect to the home page
+            redirectToPage('h.html');  // Redirect to the home page
         })
         .catch(error => {
             showError(error.message);

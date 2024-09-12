@@ -9,7 +9,8 @@ An AI Application which allows users to discover multiple AI Models and Personal
 Access the website for Multi AI at [this link](https://aadishsamir123.github.io/Multi-AI)
 
 ## Screenshots
-![Main Screen Image](screenshots/main.png)
+![Main Screen Image](screenshots/desktop/main.png)
 
-![Tooth Advice Image](screenshots/tooth-advice.png)
-![Brainstorming Image](screenshots/brainstorm.png)ils.
+![Tooth Advice Image](screenshots/desktop/tooth-advice.png)
+
+![Brainstorming Image](screenshots/desktop/brainstorm.png)

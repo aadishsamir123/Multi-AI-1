@@ -16,6 +16,7 @@
     <meta property="og:type" content="website"/>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <link rel=”icon” href="assets/favicon.ico" type=”image/x-icon”>
     <style>
       /* Overlay styles */
       #offline-overlay {
@@ -81,7 +82,13 @@
             <i class="fas fa-arrow-right-from-bracket"></i> Sign Out
           </button>
           <button onclick="passwordReset()">
-            <i class="fas fa-key"></i> Password Reset
+            <i class="fas fa-lock"></i> Password Reset
+          </button>
+          <button onclick="changeApiKey()">
+            <i class="fas fa-key"></i> Change Groq API Key
+          </button>
+          <button onclick="openGithub()">
+            <i class="fab fa-github"></i> Open GitHub Page
           </button>
         </div>
         <div class="logo"><i class="fas fa-robot"></i> Multi AI</div>
@@ -129,7 +136,7 @@
         </div>
       </div>
     </div>
-    <div class="container" id="chatContainer" style="        display: none">
+    <div class="container" id="chatContainer" style="         display: none">
       <div class="top-bar">
         <button class="refresh-button" onclick="window.location.reload()">
           <i class="fas fa-arrow-left"></i>
@@ -152,15 +159,21 @@
           <i class="fas fa-arrow-right-from-bracket"></i> Sign Out
         </button>
         <button onclick="passwordReset()">
-          <i class="fas fa-key"></i> Password Reset
+          <i class="fas fa-lock"></i> Password Reset
+        </button>
+        <button onclick="changeApiKey()">
+          <i class="fas fa-key"></i> Change Groq API Key
+        </button>
+        <button onclick="openGithub()">
+          <i class="fab fa-github"></i> Open GitHub Page
         </button>
       </div>
 
       <div id="versionModal" class="version-modal">
         <div class="version-modal-content">
           <span class="close" onclick="closeVersionModal()">&times;</span>
-          <h2>Version Information</h2>
-          <p>Version: v2.2.0.1-release</p>
+          <h2>Version</h2>
+          <p>v3.0.0.0-release</p>
         </div>
       </div>
       <div class="chat-log" id="chatLog">
@@ -291,5 +304,23 @@
       setInterval(updateOnlineStatus, CHECK_INTERVAL);
     </script>
     <script src="script.js"></script>
+    <script>
+      // Function to get the cookie value by name
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+
+      // Check if the GROQ API key cookie exists
+      const tempApiKey = getCookie('groqApiKey');
+
+      // If the cookie does not exist, redirect to enter-api-key.html
+      if (!tempApiKey) {
+        window.location.href = 'apikey.html';
+      } else{
+//        console.log("API Key from h.html: ", tempApiKey)
+      }
+    </script>
   </body>
 </html>

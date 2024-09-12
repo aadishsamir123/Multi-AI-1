@@ -28,14 +28,11 @@ body, html {
 
 .top-bar {
     display: flex;
-    align-items: center;
-    justify-content: center; /* Center align the items horizontally */
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #333;
     background-color: #1e1e1e;
     width: 100%;
-    max-width: 98.9%; /* Ensure the top-bar is within the container */
-    position: sticky;
     top: 0;
 }
 
@@ -257,6 +254,9 @@ body, html {
 
 /* Ensure full-screen overlay */
 .overlay {
+/*    opacity: 1; !* Initially visible *!*/
+/*    visibility: visible; !* Initially visible *!*/
+/*    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s; !* Transition opacity, delay visibility *!*/
     position: fixed;
     top: 0;
     left: 0;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta name="google-site-verification" content="tsIugKCGaD8cLx5KhEp7_uFXtuIGoSSNt8Lbk_lpZ0U" />
+        <meta name="google-site-verification" content="tsIugKCGaD8cLx5KhEp7_uFXtuIGoSSNt8Lbk_lpZ0U"/>
         <link rel="manifest" href="manifest.json"/>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,6 +17,7 @@
         <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
         <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
         <meta property="og:type" content="website"/>
+        <script src="https://kit.fontawesome.com/b0efd9a5a2.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div id="splashScreen" class="splash-screen">
@@ -36,10 +37,10 @@
                     <input type="password" id="password" placeholder="Password" required>
 
                     <div id="button_container">
-                        <button onclick="login()">Login</button>
-                        <button onclick="register()">Register</button>
-                        <button onclick="passwordReset()">Password Reset</button>
-                        <button id="googleSignInButton" class="login-with-google-btn" onclick="googleSignIn()">Sign in with Google</button>
+                        <button onclick="login()"><i class="fas fa-right-to-bracket"></i>&nbsp;Login</button>
+                        <button onclick="register()"><i class="fas fa-user-plus"></i>&nbsp;Register</button>
+                        <button onclick="passwordReset()"><i class="fas fa-key"></i>&nbsp;Password Reset</button>
+                        <button onclick="googleSignIn()"><i class="fab fa-google"></i>&nbsp;Sign in with Google</button>
                     </div>
                 </div>
             </div>
