@@ -53,10 +53,23 @@ setTimeout(() => {
 // Toggle the "More" menu visibility
 function toggleMoreMenu() {
     const moreMenu = document.getElementById("moreMenu");
-    moreMenu.style.display = moreMenu.style.display === "block" ? "none" : "block";
+    moreMenu.style.display = "block";
     const moreMenu1 = document.getElementById("moreMenu1");
-    moreMenu1.style.display = moreMenu1.style.display === "block" ? "none" : "block";
+    moreMenu1.style.display = "block";
 }
+
+window.addEventListener('mouseup', function (event) {
+    var menu = document.getElementById('moreMenu');
+    if (event.target != menu && event.target.parentNode != menu) {
+        menu.style.display = 'none';
+    }
+});
+window.addEventListener('mouseup', function (event) {
+    var menu1 = document.getElementById('moreMenu1');
+    if (event.target != menu1 && event.target.parentNode != menu1) {
+        menu1.style.display = 'none';
+    }
+});
 
 // Show the version modal
 function showVersion() {
@@ -138,7 +151,7 @@ const contents = [
 // Set initial content based on user choice
 function setInitialContent(choice) {
     if (choice >= 1 && choice <= contents.length) {
-        chatHistory.push({ role: "system", content: contents[choice - 1] });
+        chatHistory.push({role: "system", content: contents[choice - 1]});
 
         const overlay = document.getElementById("overlay");
 
@@ -151,7 +164,7 @@ function setInitialContent(choice) {
             // Listen for the end of the transition to hide the element
             overlay.addEventListener('transitionend', () => {
                 overlay.style.display = 'none';
-            }, { once: true });
+            }, {once: true});
 
         }, 0); // Trigger immediately
 
@@ -164,100 +177,100 @@ function setInitialContent(choice) {
 }
 
 // Select AI model based on the user's message content
-    function selectModelBasedOnMessage(message) {
-        if (message.length > 500) {
-            return "llama-3.1-405b-reasoning";
-        } else if (message.toLowerCase().includes("urgent") || message.toLowerCase().includes("quick")) {
-            return "llama3-groq-8b-8192-tool-use-preview";
-        } else if (["code", "programming", "debug", "script"].some(word => message.toLowerCase().includes(word))) {
-            return "mixtral-8x7b-32768";
-        } else if (["support", "help", "customer", "service"].some(word => message.toLowerCase().includes(word))) {
-            return "llama-3.1-8b-instant";
-        } else if (["research", "study", "learn", "education"].some(word => message.toLowerCase().includes(word))) {
-            return "gemma2-9b-it";
-        } else if (["health", "medical", "doctor", "medicine"].some(word => message.toLowerCase().includes(word))) {
-            return "gemma-7b-it";
-        } else {
-            return "llama3-70b-8192";
-        }
+function selectModelBasedOnMessage(message) {
+    if (message.length > 500) {
+        return "llama-3.1-405b-reasoning";
+    } else if (message.toLowerCase().includes("urgent") || message.toLowerCase().includes("quick")) {
+        return "llama3-groq-8b-8192-tool-use-preview";
+    } else if (["code", "programming", "debug", "script"].some(word => message.toLowerCase().includes(word))) {
+        return "mixtral-8x7b-32768";
+    } else if (["support", "help", "customer", "service"].some(word => message.toLowerCase().includes(word))) {
+        return "llama-3.1-8b-instant";
+    } else if (["research", "study", "learn", "education"].some(word => message.toLowerCase().includes(word))) {
+        return "gemma2-9b-it";
+    } else if (["health", "medical", "doctor", "medicine"].some(word => message.toLowerCase().includes(word))) {
+        return "gemma-7b-it";
+    } else {
+        return "llama3-70b-8192";
     }
+}
 
 // Send a message and get a response from the AI
-    function sendMessage() {
-        const userInput = document.getElementById("userInput").value;
-        if (userInput.trim()) {
-            const chatLog = document.getElementById("chatLog");
-            chatLog.innerHTML += `<br><p>You: ${userInput.replace(/\n/g)}</p>`;
-            document.getElementById("userInput").value = "";
+function sendMessage() {
+    const userInput = document.getElementById("userInput").value;
+    if (userInput.trim()) {
+        const chatLog = document.getElementById("chatLog");
+        chatLog.innerHTML += `<br><p>You: ${userInput.replace(/\n/g)}</p>`;
+        document.getElementById("userInput").value = "";
 
-            chatHistory.push({role: "user", content: userInput});
+        chatHistory.push({role: "user", content: userInput});
 
-            const selectedModel = selectModelBasedOnMessage(userInput);
-            document.getElementById("modelLabel").textContent = `Model: ${selectedModel}`;
+        const selectedModel = selectModelBasedOnMessage(userInput);
+        document.getElementById("modelLabel").textContent = `Model: ${selectedModel}`;
 
-            fetch("https://api.groq.com/openai/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`  // Use the API key from the cookie
-                },
-                body: JSON.stringify({
-                    model: selectedModel,
-                    messages: chatHistory,
-                    max_tokens: 1000,
-                    temperature: 1.2
-                })
+        fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`  // Use the API key from the cookie
+            },
+            body: JSON.stringify({
+                model: selectedModel,
+                messages: chatHistory,
+                max_tokens: 1000,
+                temperature: 1.2
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data || !data.choices || !data.choices.length) {
-                        throw new Error("Invalid API response format");
-                    }
-                    const assistantMessage = data.choices[0].message.content;
-                    chatHistory.push({role: "assistant", content: assistantMessage});
-                    chatLog.innerHTML += `<p>Multi AI: ${assistantMessage.replace(/\n/g, '<br>')}</p>`;
-                    chatLog.scrollTop = chatLog.scrollHeight;
-                })
-                .catch(error => {
-                    chatLog.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
-                });
-        }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data || !data.choices || !data.choices.length) {
+                    throw new Error("Invalid API response format");
+                }
+                const assistantMessage = data.choices[0].message.content;
+                chatHistory.push({role: "assistant", content: assistantMessage});
+                chatLog.innerHTML += `<p>Multi AI: ${assistantMessage.replace(/\n/g, '<br>')}</p>`;
+                chatLog.scrollTop = chatLog.scrollHeight;
+            })
+            .catch(error => {
+                chatLog.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+            });
     }
+}
 
 // Splash screen functionality
-    document.addEventListener("DOMContentLoaded", function () {
-        const splashScreen = document.getElementById("splashScreen");
+document.addEventListener("DOMContentLoaded", function () {
+    const splashScreen = document.getElementById("splashScreen");
 
-        if (document.fonts) {
-            document.fonts.ready.then(function () {
-                window.dispatchEvent(new Event('load'));
-            });
-        }
-
-        window.addEventListener("load", function () {
-            setTimeout(() => {
-                splashScreen.style.opacity = '0';
-                splashScreen.style.transition = 'opacity 0.5s ease';
-                splashScreen.addEventListener('transitionend', () => {
-                    splashScreen.style.display = 'none';
-                });
-            }, 500);
+    if (document.fonts) {
+        document.fonts.ready.then(function () {
+            window.dispatchEvent(new Event('load'));
         });
+    }
+
+    window.addEventListener("load", function () {
+        setTimeout(() => {
+            splashScreen.style.opacity = '0';
+            splashScreen.style.transition = 'opacity 0.5s ease';
+            splashScreen.addEventListener('transitionend', () => {
+                splashScreen.style.display = 'none';
+            });
+        }, 500);
     });
+});
 
-    function signOut() {
-        if (window.confirm("Are you sure you want to sign out? You will have to enter your GROQ API Key again.")) {
-            document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Delete the cookie
-            document.cookie = "groqApiKey=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Delete the cookie
-            redirectToPage('index.html')
-        }
+function signOut() {
+    if (window.confirm("Are you sure you want to sign out? You will have to enter your GROQ API Key again.")) {
+        document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Delete the cookie
+        document.cookie = "groqApiKey=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Delete the cookie
+        redirectToPage('index.html')
     }
+}
 
-    function passwordReset() {
-        location.href = "password-reset.html"
-    }
+function passwordReset() {
+    location.href = "password-reset.html"
+}
