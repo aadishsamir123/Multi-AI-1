@@ -254,9 +254,6 @@ body, html {
 
 /* Ensure full-screen overlay */
 .overlay {
-/*    opacity: 1; !* Initially visible *!*/
-/*    visibility: visible; !* Initially visible *!*/
-/*    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s; !* Transition opacity, delay visibility *!*/
     position: fixed;
     top: 0;
     left: 0;

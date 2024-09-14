@@ -1,13 +1,31 @@
 // Register the service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/pwabuilder-sw.js')
-            .then(registration => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
+        navigator.serviceWorker.register('/pwabuilder-sw.js').then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+
+            // Listen for the service worker waiting to activate
+            if (registration.waiting) {
+                console.log('New service worker waiting to activate.');
+                // Optionally, you can show a notification or prompt the user to refresh
+            }
+
+            // Listen for updates
+            registration.onupdatefound = () => {
+                const installingWorker = registration.installing;
+                if (installingWorker) {
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('New content available, page will update.');
+                            alert("There is a new version of the app. The app will now reload.")
+                            window.location.reload()
+                        }
+                    };
+                }
+            };
+        }).catch(error => {
+            console.error('Service Worker registration failed:', error);
+        });
     });
 }
 

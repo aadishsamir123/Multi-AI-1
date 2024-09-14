@@ -12,7 +12,6 @@
     <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs."/>
     <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI"/>
     <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
-    <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
     <meta property="og:type" content="website"/>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
@@ -20,18 +19,19 @@
     <style>
       /* Overlay styles */
       #offline-overlay {
-        display: none; /* Hidden by default */
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        display: none; /* Initial state hidden */
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: #121212;
         color: white;
         text-align: center;
         z-index: 1000;
         font-family: 'Roboto', sans-serif;
-        display: flex;
         justify-content: center;
         align-items: center;
       }
@@ -45,6 +45,7 @@
         justify-content: center;
         gap: 20px; /* Space between the icons */
         margin-bottom: 20px;
+        z-index: 1001;
       }
       #offline-overlay .icons i {
         font-size: 50px;
@@ -59,11 +60,6 @@
     </style>
   </head>
   <body>
-    <script>
-      if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('pwabuilder-sw.js')
-      }
-    </script>
     <div id="splashScreen" class="splash-screen">
       <div class="splash-content">
         <h1>Loading...</h1>
@@ -136,9 +132,9 @@
         </div>
       </div>
     </div>
-    <div class="container" id="chatContainer" style="         display: none">
+    <div class="container" id="chatContainer" style="          display: none">
       <div class="top-bar">
-        <button class="refresh-button" onclick="window.location.reload()">
+        <button class="refresh-button" onclick="goBack()">
           <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo" id="topBarLogo">
@@ -173,7 +169,7 @@
         <div class="version-modal-content">
           <span class="close" onclick="closeVersionModal()">&times;</span>
           <h2>Version</h2>
-          <p>v3.1.0.0-release</p>
+          <p>v3.1.1.0-release</p>
         </div>
       </div>
       <div class="chat-log" id="chatLog">
@@ -216,8 +212,6 @@
 
 
 
-
-
         // Remove the existing FontAwesome script
         const oldScript = document.getElementById('fontawesome-script');
         if (oldScript) {
@@ -236,11 +230,9 @@
       }
 
       function updateOnlineStatus() {
+        const overlay = document.getElementById('offline-overlay');
+
         if (navigator.onLine) {
-
-
-
-
 
 
           // Try to ping the server to ensure connectivity
@@ -250,47 +242,47 @@
                 if (!fontAwesomeReloaded) {
 
 
-
-
-
-
                   // Connection is back, reload FontAwesome if not already reloaded
                   reloadFontAwesome();
                 }
                 // Hide the offline overlay
-                document.getElementById('offline-overlay').style.display = 'none';
+                hideOfflineOverlay();
               } else {
 
 
-
-
-
-
                 // Server responded with an error status
-                document.getElementById('offline-overlay').style.display = 'flex';
+                showOfflineOverlay();
               }
             })
             .catch(() => {
 
 
-
-
-
-
               // Network error or server not reachable
-              document.getElementById('offline-overlay').style.display = 'flex';
+              showOfflineOverlay();
             });
         } else {
 
 
-
-
-
-
           // If offline, display the overlay
-          document.getElementById('offline-overlay').style.display = 'flex';
+          showOfflineOverlay();
           fontAwesomeReloaded = false; // Reset reload flag when going offline
         }
+      }
+
+      function showOfflineOverlay() {
+        const overlay = document.getElementById('offline-overlay');
+        overlay.style.display = 'flex';
+        // Trigger a reflow/repaint to ensure opacity transition works
+        overlay.offsetHeight; // Read the offsetHeight property
+        overlay.style.opacity = '1';
+      }
+
+      function hideOfflineOverlay() {
+        const overlay = document.getElementById('offline-overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 500); // Match the duration of the opacity transition
       }
 
       // Initial check
@@ -318,8 +310,10 @@
       // If the cookie does not exist, redirect to enter-api-key.html
       if (!tempApiKey) {
         window.location.href = 'apikey.html';
-      } else{
-//        console.log("API Key from h.html: ", tempApiKey)
+      } else  {
+
+
+        //        console.log("API Key from h.html: ", tempApiKey)
       }
     </script>
   </body>

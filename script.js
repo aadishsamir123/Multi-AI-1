@@ -1,13 +1,31 @@
 // Register the service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/pwabuilder-sw.js')
-            .then(registration => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
+        navigator.serviceWorker.register('/pwabuilder-sw.js').then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+
+            // Listen for the service worker waiting to activate
+            if (registration.waiting) {
+                console.log('New service worker waiting to activate.');
+                // Optionally, you can show a notification or prompt the user to refresh
+            }
+
+            // Listen for updates
+            registration.onupdatefound = () => {
+                const installingWorker = registration.installing;
+                if (installingWorker) {
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('New content available, page will update.');
+                            alert("There is a new version of the app. The app will now reload.")
+                            window.location.reload()
+                        }
+                    };
+                }
+            };
+        }).catch(error => {
+            console.error('Service Worker registration failed:', error);
+        });
     });
 }
 
@@ -95,7 +113,7 @@ function updateApp() {
             window.location.reload(true);
         })
         .catch(err => {
-            console.error('Error clearing cache:', err);
+            console.error('Error updating app: ', err);
         });
 }
 
@@ -174,6 +192,26 @@ function setInitialContent(choice) {
     } else {
         alert("Invalid choice. Please choose a valid option.");
     }
+}
+
+function goBack() {
+    const overlay = document.getElementById("overlay");
+    const chatContainer = document.getElementById("chatContainer");
+
+    // Set the initial styles to make the animation visible
+    overlay.style.display = 'flex';
+    overlay.style.transition = 'opacity 0.5s ease'; // Ensure transition is applied
+    overlay.style.opacity = '0'; // Start with invisible
+
+    // Ensure a slight delay to allow the transition to occur
+    setTimeout(() => {
+        overlay.style.opacity = '1'; // Fade in the overlay
+    }, 0);
+
+    // Once the overlay animation is done, hide the chatContainer
+    setTimeout(() => {
+        chatContainer.style.display = "none";
+    }, 500); // Matches the transition time
 }
 
 // Select AI model based on the user's message content
