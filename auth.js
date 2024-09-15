@@ -17,7 +17,7 @@ if ('serviceWorker' in navigator) {
                     installingWorker.onstatechange = () => {
                         if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             console.log('New content available, page will update.');
-                            alert("There is a new version of the app. The app will now reload.")
+                            alert("There is a new version of the app.")
                             window.location.reload()
                         }
                     };
@@ -35,29 +35,6 @@ if ('serviceWorker' in navigator) {
 //        window.location.href = 'install.html'; // Replace 'install.html' with the URL of your installation page
 //    }
 //});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Show the splash screen
-    const splashScreen = document.getElementById("splashScreen");
-
-    // Ensure fonts are loaded before hiding the splash screen
-    if (document.fonts) {
-        document.fonts.ready.then(function () {
-            window.dispatchEvent(new Event('load'));
-        });
-    }
-
-    // Hide the splash screen after everything is loaded
-    window.addEventListener("load", function () {
-        setTimeout(() => {
-            splashScreen.style.opacity = '0';
-            splashScreen.style.transition = 'opacity 0.5s ease';
-            splashScreen.addEventListener('transitionend', () => {
-                splashScreen.style.display = 'none';
-            });
-        }, 1500); // Adjust delay as needed
-    });
-});
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -89,36 +66,44 @@ function validate_password(password) {
 }
 
 function showError(error) {
-  let message;
+    let message;
 
-  // Log the entire error object to understand its structure
-  console.log('Error object:', error);
+    // Log the entire error object to understand its structure
+    console.log('Error object:', error);
+    // Extract error details from the response
+    const errorCode = error.error?.code;
+    const errorMessage = error.error?.message || error.message;
 
-  // Extract error details from the response
-  const errorCode = error.error?.code;
-  const errorMessage = error.error?.message || error.message;
+    switch (error) {
+        case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+            message = 'Email or password is incorrect.';
+            break;
+        case 'The password is invalid or the user does not have a password.':
+            message = 'Incorrect password/Created account using Google.';
+            break;
+        case 'The user account has been disabled by an administrator.':
+            message = 'The account has been disabled.'
+            break;
+        case 'Invalid email or password.':
+            message = 'Invalid email or password format.'
+            break;
+        case 'The popup has been closed by the user before finalizing the operation.':
+            message = 'The sign-in popup has been closed.'
+            break;
+        default:
+            message = 'The request was invalid. Please check the details and try again.';
+            break;
+    }
 
-  switch (error) {
-    case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-      message = 'Email does not exist';
-      break;
-    case 'The password is invalid or the user does not have a password.':
-      message = 'Incorrect password/Created account using Google.';
-      break;
-    case 'The user account has been disabled by an administrator.':
-      message = 'The account has been disabled.'
-      break;
-    case 'Invalid email or password.':
-      message = 'Invalid email or password format. Please make sure the password is at least 6 characters.'
-      break;
-    default:
-      message = 'The request was invalid. Please check the details and try again.';
-      break;
-  }
-
-  // Display the error message
-  alert(message);
+    // Display the error message
+    const x = document.getElementById("snackbar");
+    x.innerHTML = "<i class='fas fa-circle-xmark'></i> <strong>" + message + "</strong>";
+    x.className = "show";
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
+    }, 3000);
 }
+
 // Function to get cookie value by name
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -227,3 +212,26 @@ function googleSignIn() {
 function passwordReset() {
     location.href = "password-reset.html"
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Show the splash screen
+    const splashScreen = document.getElementById("splashScreen");
+
+    // Ensure fonts are loaded before hiding the splash screen
+    if (document.fonts) {
+        document.fonts.ready.then(function () {
+            window.dispatchEvent(new Event('load'));
+        });
+    }
+
+    // Hide the splash screen after everything is loaded
+    window.addEventListener("load", function () {
+        setTimeout(() => {
+            splashScreen.style.opacity = '0';
+            splashScreen.style.transition = 'opacity 0.5s ease';
+            splashScreen.addEventListener('transitionend', () => {
+                splashScreen.style.display = 'none';
+            });
+        }, 1500); // Adjust delay as needed
+    });
+});
