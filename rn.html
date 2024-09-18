@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="manifest" href="manifest.json"/>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Multi AI</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <script src="https://kit.fontawesome.com/b0efd9a5a2.js" crossorigin="anonymous"></script>
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Multi AI"/>
-    <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs."/>
-    <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI"/>
-    <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
-    <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
-    <meta property="og:type" content="website"/>
-  </head>
-  <body>
-    <div id="splashScreen" class="splash-screen">
-      <div class="splash-content">
-        <h1>Loading...</h1>
-      </div>
-    </div>
-    <button class="refresh-button" onclick="goHome()">
-          <i class="fas fa-arrow-left"></i>
+    <head>
+        <link rel="manifest" href="manifest.json"/>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Multi AI</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <script src="https://kit.fontawesome.com/b0efd9a5a2.js" crossorigin="anonymous"></script>
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Multi AI"/>
+        <meta property="og:description" content="Aadish's Multi AI Interface. Chat with different AI models based on your needs."/>
+        <meta property="og:url" content="https://aadishsamir123.github.io/Multi-AI"/>
+        <meta property="og:image" content="https://aadishsamir123.github.io/Multi-AI/assets/1024-icon.png"/>
+        <script>navigator.serviceWorker.register("pwabuilder-sw.js")</script>
+        <meta property="og:type" content="website"/>
+    </head>
+    <body>
+        <div id="splashScreen" class="splash-screen">
+            <div class="splash-content">
+                <h1>Loading...</h1>
+            </div>
+        </div>
+        <button class="refresh-button" onclick="goHome()">
+            <i class="fas fa-arrow-left"></i>
         </button>
-    <iframe src="https://multi-ai.releasenotes.io" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <script>
-      function goHome() {
-        window.location.href = "h.html"
-    }
+        <iframe sandbox="allow-scripts" src="https://multi-ai.releasenotes.io" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <script>
 
-    // Splash screen functionality
-    document.addEventListener("DOMContentLoaded", function () {
-        // Show the splash screen
-        const splashScreen = document.getElementById("splashScreen");
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(() => {
+                    console.log('%cWARNING!', 'color: red; font-size: 40px; font-weight: bold; background-color: #FFFF00;');
+                    console.log('%cUsing this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.', 'font-size: 16px;');
+                    console.log('%cDo not enter or paste code that you do not understand.', 'font-size: 18px;');
+                }, 1000);
+            })
+            function goHome() {
+                window.location.href = "h.html"
+            }
 
-        // Ensure fonts are loaded before hiding the splash screen
-        if (document.fonts) {
-            document.fonts.ready.then(function () {
-                window.dispatchEvent(new Event('load'));
-            });
-        }
+            // Splash screen functionality
+            document.addEventListener("DOMContentLoaded", function () {
 
-        // Hide the splash screen after everything is loaded
-        window.addEventListener("load", function () {
-            setTimeout(() => {
-                splashScreen.style.opacity = '0';
-                splashScreen.style.transition = 'opacity 0.5s ease';
-                splashScreen.addEventListener('transitionend', () => {
-                    splashScreen.style.display = 'none';
+
+
+
+
+                // Show the splash screen
+                const splashScreen = document.getElementById("splashScreen");
+
+                // Ensure fonts are loaded before hiding the splash screen
+                if (document.fonts) {
+                    document.fonts.ready.then(function () {
+                        window.dispatchEvent(new Event('load'));
+                    });
+                }
+
+                // Hide the splash screen after everything is loaded
+                window.addEventListener("load", function () {
+                    setTimeout(() => {
+                        splashScreen.style.opacity = '0';
+                        splashScreen.style.transition = 'opacity 0.5s ease';
+                        splashScreen.addEventListener('transitionend', () => {
+                            splashScreen.style.display = 'none';
+                        });
+                    }, 3000); // Adjust delay as needed
                 });
-            }, 3000); // Adjust delay as needed
-        });
-    });
-    </script>
-  </body>
+            });
+        </script>
+    </body>
 </html>

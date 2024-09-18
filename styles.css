@@ -197,7 +197,7 @@ body, html {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 .version-modal-content {
@@ -209,6 +209,7 @@ body, html {
     color: white;
     text-align: center;
     position: relative;
+    z-index: 10001;
 }
 
 .version-modal-content .close {

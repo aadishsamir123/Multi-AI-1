@@ -130,6 +130,13 @@ function checkAuthAndRedirect() {
 
 // Call checkAuthAndRedirect on page load
 document.addEventListener('DOMContentLoaded', checkAuthAndRedirect);
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        console.log('%cWARNING!', 'color: red; font-size: 40px; font-weight: bold; background-color: #FFFF00;');
+        console.log('%cUsing this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.', 'font-size: 16px;');
+        console.log('%cDo not enter or paste code that you do not understand.', 'font-size: 18px;');
+    }, 1000);
+})
 
 // Register function with error handling
 function register() {
@@ -210,7 +217,7 @@ function googleSignIn() {
 }
 
 function passwordReset() {
-    location.href = "password-reset.html"
+    location.href = "pwrst.html"
 }
 
 document.addEventListener("DOMContentLoaded", function () {

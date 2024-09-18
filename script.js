@@ -18,7 +18,7 @@ if ('serviceWorker' in navigator) {
                         if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             console.log('New content available, page will update.');
                             alert("There is a new version of the app. The app will now reload.")
-                            window.location.reload()
+                            updateApp()
                         }
                     };
                 }
@@ -299,6 +299,11 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }, 500);
     });
+    setTimeout(() => {
+        console.log('%cWARNING!', 'color: red; font-size: 40px; font-weight: bold; background-color: #FFFF00;');
+        console.log('%cUsing this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.', 'font-size: 16px;');
+        console.log('%cDo not enter or paste code that you do not understand.', 'font-size: 18px;');
+    }, 1000);
 });
 
 function signOut() {
@@ -310,5 +315,5 @@ function signOut() {
 }
 
 function passwordReset() {
-    location.href = "password-reset.html"
+    location.href = "pwrst.html"
 }
