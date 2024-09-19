@@ -252,7 +252,12 @@ function sendMessage() {
     const userInput = document.getElementById("userInput").value;
     if (userInput.trim()) {
         const chatLog = document.getElementById("chatLog");
-        chatLog.innerHTML += `<br><p>You: ${userInput.replace(/\n/g)}</p>`;
+
+        // Add user message with animation
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('user-message', 'new-message');
+        userMessageDiv.innerHTML = userInput.replace(/\n/g, '<br>');
+        chatLog.appendChild(userMessageDiv);
         document.getElementById("userInput").value = "";
 
         chatHistory.push({role: "user", content: userInput});
@@ -261,38 +266,60 @@ function sendMessage() {
         document.getElementById("modelLabel").textContent = `Model: ${selectedModel}`;
 
         fetch("https://api.groq.com/openai/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${apiKey}`  // Use the API key from the cookie
-            },
-            body: JSON.stringify({
-                model: selectedModel,
-                messages: chatHistory,
-                max_tokens: 1000,
-                temperature: 1.2
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`  // Use the API key from the cookie
+                },
+                body: JSON.stringify({
+                    model: selectedModel,
+                    messages: chatHistory,
+                    max_tokens: 1000,
+                    temperature: 1.2
+                })
             })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (!data || !data.choices || !data.choices.length) {
-                    throw new Error("Invalid API response format");
-                }
-                const assistantMessage = data.choices[0].message.content;
-                chatHistory.push({role: "assistant", content: assistantMessage});
-                chatLog.innerHTML += `<p>Multi AI: ${assistantMessage.replace(/\n/g, '<br>')}</p>`;
-                chatLog.scrollTop = chatLog.scrollHeight;
-            })
-            .catch(error => {
-                chatLog.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
-            });
-    }
-}
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data || !data.choices || !data.choices.length) {
+                        throw new Error("Invalid API response format");
+                    }
+                    const assistantMessage = data.choices[0].message.content;
+                    chatHistory.push({role: "assistant", content: assistantMessage});
+
+                    // Add AI response with animation
+                    const aiMessageDiv = document.createElement('div');
+                    aiMessageDiv.classList.add('ai-message', 'new-message');
+                    aiMessageDiv.innerHTML = assistantMessage.replace(/\n/g, '<br>');
+                    chatLog.appendChild(aiMessageDiv);
+
+                    // Remove 'new-message' class after animation ends
+                    aiMessageDiv.addEventListener('animationend', () => {
+                        aiMessageDiv.classList.remove('new-message');
+                    });
+
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                })
+                .catch(error => {
+                    const errorMessageDiv = document.createElement('div');
+                    errorMessageDiv.classList.add('ai-message', 'new-message');
+                    errorMessageDiv.style.color = 'red';
+                    errorMessageDiv.innerHTML = `Error: ${error.message}`;
+                    chatLog.appendChild(errorMessageDiv);
+
+                    // Remove 'new-message' class after animation ends
+                    errorMessageDiv.addEventListener('animationend', () => {
+                        errorMessageDiv.classList.remove('new-message');
+                    });
+
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                });
+        }
+    }    
 
 // Splash screen functionality
 document.addEventListener("DOMContentLoaded", function () {
